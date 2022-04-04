@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class AdvantageUser extends Model
@@ -23,4 +24,16 @@ class AdvantageUser extends Model
         'services_id',
         'advantage_user',
     ];
+
+    // one to many 
+
+    /**
+     * Get the Service that owns the AdvantageUser
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function Service(): BelongsTo
+    {
+        return $this->belongsTo(Service::class, 'services_id', 'id');
+    }
 }

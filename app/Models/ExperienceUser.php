@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ExperienceUser extends Model
@@ -23,4 +24,16 @@ class ExperienceUser extends Model
         'detail_users_id',
         'experience',
     ];
+
+    // one to many
+
+    /**
+     * Get the detailUser that owns the ExperienceUser
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function detailUser(): BelongsTo
+    {
+        return $this->belongsTo(detailUser::class, 'detail_users_id', 'id');
+    }
 }

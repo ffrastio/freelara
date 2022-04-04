@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ThumbnailService extends Model
@@ -23,4 +24,18 @@ class ThumbnailService extends Model
         'services_id',
         'thumbnail',
     ];
+
+    // one to many
+
+    //one to many 
+
+    /**
+     * Get the Service that owns the AdvantageService
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function Service(): BelongsTo
+    {
+        return $this->belongsTo(Service::class, 'services_id', 'id');
+    }
 }

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class OrderStatus extends Model
@@ -22,4 +23,16 @@ class OrderStatus extends Model
     protected $fillable = [
         'name',
     ];
+
+    // one to many 
+
+    /**
+     * Get all of the Orders for the OrderStatus
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function Orders(): HasMany
+    {
+        return $this->hasMany(Orders::class, 'order_status_id', 'id');
+    }
 }
