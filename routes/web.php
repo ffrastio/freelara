@@ -19,10 +19,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('explore', LandingController::class, 'explore')->name('explore.landing');
-Route::get('detail_booking/{id}', LandingController::class, 'detail_booking')->name('detail.booking.landing');
-Route::get('booking/{id}', LandingController::class, 'booking')->name('booking.landing');
-Route::get('detail/{id}', LandingController::class, 'detail')->name('detail.landing');
+Route::get('explore', [LandingController::class, 'explore'])->name('explore.landing');
+Route::get('detail_booking/{id}', [LandingController::class, 'detail_booking'])->name('detail.booking.landing');
+Route::get('booking/{id}', [LandingController::class, 'booking'])->name('booking.landing');
+Route::get('detail/{id}', [LandingController::class, 'detail'])->name('detail.landing');
 Route::resource('/', LandingController::class);
 
 // Route Dashboard Authentication
@@ -38,16 +38,16 @@ Route::group(
         Route::resource('service', ServiceController::class);
 
         // myOrder
-        Route::get('accept/order/{id}', MyOrderController::class, 'accepted')->name('accept.order');
-        Route::get('reject/order/{id}', MyOrderController::class, 'rejected')->name('reject.order');
+        Route::get('accept/order/{id}', [MyOrderController::class, 'accepted'])->name('accept.order');
+        Route::get('reject/order/{id}', [MyOrderController::class, 'rejected'])->name('reject.order');
         Route::resource('order', MyOrderController::class);
 
         // Request
-        Route::get('approve/request/{id}', RequestController::class, 'approve')->name('approve.request');
+        Route::get('approve/request/{id}', [RequestController::class, 'approve'])->name('approve.request');
         Route::resource('request', RequestController::class);
 
         // Profile
-        Route::get('delete_photo', ProfileController::class, 'delete')->name('delete.photo.profile');
+        Route::get('delete_photo', [ProfileController::class, 'delete'])->name('delete.photo.profile');
         Route::resource('profile', ProfileController::class);
     }
 );
