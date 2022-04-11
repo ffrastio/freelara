@@ -18,6 +18,23 @@ class LandingController extends Controller
         return view('pages.landing.index');
     }
 
+    public function explore()
+    {
+        //
+        return view('pages.landing.explore');
+    }
+
+    public function detail($id)
+    {
+        //
+        return view('pages.landing.detail');
+    }
+
+    public function booking($id)
+    {
+        return view('pages.landing.booking');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
